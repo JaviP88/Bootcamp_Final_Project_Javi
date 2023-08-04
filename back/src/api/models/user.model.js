@@ -13,7 +13,10 @@ const UserSchema = new Schema(
         image:{type:String},
         confirmationCode:{type:Number, required:true},
         checkConfrmationCode:{type:Boolean, default:false},
-        favouriteCharacters:[{type:mongoose.Schema.Types.ObjectId, ref:"Character"}]
+        favouriteCharacters:[{type:mongoose.Schema.Types.ObjectId, ref:"Character"}],
+        favouriteMovies: [{type:mongoose.Schema.Types.ObjectId, ref:"Movie"}],
+        characterImagesUpload: [{type:mongoose.Schema.Types.ObjectId, ref:"Gallery"}],
+        userComments : [{type:mongoose.Schema.Types.ObjectId, ref:"Comment"}]
     },
     {
         timestamps:true

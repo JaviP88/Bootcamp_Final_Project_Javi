@@ -8,7 +8,7 @@ dotenv.config();
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'charactersImagesDB',
+    folder: 'moviesImagesDB',
     allowedFormats: ['jpg', 'png', 'jpeg', 'gif', 'webp'],
   },
 });

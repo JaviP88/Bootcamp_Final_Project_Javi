@@ -49,9 +49,11 @@ app.use(express.urlencoded({ limit: '5mb', extended: false }));
 //! ------ LAS ROUTAS -------------------------------------------
 const UserRoutes = require("./src/api/routes/user.routes");
 const CharacterRoutes = require("./src/api/routes/character.routes");
+const MovieRoutes = require("./src/api/routes/movie.routes");
 
 app.use('/api/v1/users', UserRoutes);
 app.use('/api/v1/characters', CharacterRoutes);
+app.use('/api/v1/movies', MovieRoutes)
 
 app.use("*", (req, res, next) => {
   const error = new Error("Route not found");

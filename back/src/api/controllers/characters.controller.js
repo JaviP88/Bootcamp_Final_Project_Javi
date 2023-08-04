@@ -1,5 +1,5 @@
 const Character = require('../models/character.model');
-const User = require('../models/user.model');
+const Movie = require('../models/movie.model')
 const dotenv = require('dotenv');
 const setError = require('../../helpers/handle-error');
 const { deleteImgCloudinary } = require('../../middlewares/characterFiles.middleware');
@@ -159,7 +159,7 @@ const getCharacterById = async (req, res, next) => {
     
     try {
         const { id } = req.params;
-        const characterById = await Character.findById(id).populate('user');
+        const characterById = await Character.findById(id).populate('user characterComments movie characterGallery');
         if(characterById) {
             return res.status(200).json(characterById);
         } else {
@@ -177,7 +177,7 @@ const getCharacterById = async (req, res, next) => {
 
 const getAllCharacters = async (req, res, next) => {
     try {
-        const allCharacters = await Character.find().populate('user');
+        const allCharacters = await Character.find().populate('user characterComments movie characterGallery');
         if (allCharacters) {
             return res.status(200).json(allCharacters);
         } else {
@@ -189,19 +189,43 @@ const getAllCharacters = async (req, res, next) => {
 };
 
 
-//! --------------------------------------------------------------------------------------
-//? -------------------------- GET MOVIE CHARACTERS -------------------------------------
-//! --------------------------------------------------------------------------------------
+//! -----------------------------------------------------------------------------
+//? -------------------- ADD/DELETE MOVIE TO A CHARACTER ------------------------
+//! -----------------------------------------------------------------------------
 
-const movieFilterCharacter = async (req, res, next) => {
-    const { movie } = req.params;
+const addMovieToCharacter = async (req, res, next) => {
     try {
-        const movieCharacters = await Character.find({movie: movie}).populate('user');
-        if (movieCharacters) {
-            return res.status(200).json(movieCharacters)
-        } else {
-            return res.status(404).json('We could not found any character for this movie');
-        };
+        // Sacamos el ID de la pelicula y del personaje que queremos incluir dentro
+        const { characterId, movieIdToAdd } = req.body;       // hay que meterle el id de movie por param o por body (es mejor meterlo por body ya que es más dificil de interceptar)
+        // Actualizamos los indexes
+        await Movie.syncIndexes();
+        await Character.syncIndexes();
+        try {
+            const character = await Character.findById(characterId);        //! Si no encuentra el ID, no lanza un false, lanza un null
+            const movie = await Movie.findById(movieIdToAdd);               //! Si no encuentra el ID, no lanza un false, lanza un null
+
+            if (movie == null && character == null) {
+                return res.status(404).json('Movie ID and character ID are not found in our DB.');
+            } else if (movie == null){
+                return res.status(404).json('Movie ID is not found in our DB.');
+            } else if (character == null) {
+                return res.status(404).json('Character ID is not found in our DB.');
+            } else {
+                if (!character.movie.includes(movieIdToAdd)) {
+                    await character.updateOne({ $push: { movie: movieIdToAdd } });
+                    await movie.updateOne({ $push: { movieCharacters: characterId } });
+    
+                    res.status(200).json('The movie has been added to this character');
+                } else {
+                    await character.updateOne({ $pull: { movie: movieIdToAdd } });
+                    await movie.updateOne({ $pull: { movieCharacters: characterId } });
+    
+                    res.status(200).json('The movie has been deleted to this character');
+                }
+            }  
+        } catch (err) {
+            res.status(500).json(err);
+        }
     } catch (error) {
         return next(error);
     };
@@ -216,5 +240,5 @@ module.exports = {
     deleteCharacter,
     getCharacterById,
     getAllCharacters,
-    movieFilterCharacter
+    addMovieToCharacter
 };

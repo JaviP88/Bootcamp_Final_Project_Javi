@@ -11,6 +11,7 @@ const {
     update,
     deleteUser,
     addFavouriteCharacter,
+    addFavouriteMovie,
     getUserById,
     allUsers
 } = require("../controllers/users.controller");
@@ -27,6 +28,7 @@ UserRoutes.patch('/update/update', [isAuth], upload.single('image'), update);
 UserRoutes.delete('/', [isAuth], deleteUser);
 UserRoutes.get('/:_id', [isAuthAdmin], getUserById);
 UserRoutes.post('/addFavouriteCharacter/:id', [isAuth], addFavouriteCharacter);   //?    ¿¿Hay que meterle en la ruta :id??
+UserRoutes.post('/addFavouriteMovie/:id', [isAuth], addFavouriteMovie)
 
 UserRoutes.get('/', allUsers);
 

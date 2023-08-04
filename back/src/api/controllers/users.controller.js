@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const Character = require("../models/character.model");
+const Movie = require("../models/movie.model");
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
@@ -496,9 +497,44 @@ const addFavouriteCharacter = async (req, res, next) => {
 }
 
 
-//! -------------------------------------------------------
-//? -------------------- GET BY ID ------------------------
-//! -------------------------------------------------------
+//! ---------------------------------------------------------------------------
+//? -------------------- ADD/DELETE MOVIE TO FAVOURITE ------------------------
+//! ---------------------------------------------------------------------------
+
+const addFavouriteMovie = async (req, res, next) => {
+    try {
+        // Sacamos el ID del usuario
+        const { _id } = req.user;
+        // Y el id del personaje que queremos añadir a favoritos
+        const favMovie = req.params.id
+        // Actualizamos los indexes
+        await Movie.syncIndexes();
+        try {
+            const user = await User.findById(_id);
+            const movie = await Movie.findById(favMovie);
+
+            if (!user.favouriteMovies.includes(favMovie)) {
+                await user.updateOne({ $push: { favouriteMovies: favMovie } });
+                await movie.updateOne({ $push: { user: _id } });
+
+                res.status(200).json('The movie has been liked');
+            } else {
+                await user.updateOne({ $pull: { favouriteMovies: favMovie } });
+                await movie.updateOne({ $pull: { user: _id } })
+
+                res.status(200).json('The movie has been disliked');
+            }
+        } catch (err) {
+            res.status(500).json(err);
+        } 
+    } catch (error) {
+        return next(error);
+    }
+}
+
+//! ------------------------------------------------------------
+//? -------------------- GET USER BY ID ------------------------
+//! ------------------------------------------------------------
 
 const getUserById = async (req, res, next) => {
     try {
@@ -508,7 +544,7 @@ const getUserById = async (req, res, next) => {
         if(userById) {
             return res.status(200).json(userById);
         } else {
-            return res.status(404).json('This user Id does not exist.')
+            return res.status(404).json('This user ID does not exist.')
         }
     } catch (error) {
         return next(error)
@@ -546,6 +582,7 @@ module.exports = {
     update,
     deleteUser,
     addFavouriteCharacter,
+    addFavouriteMovie,
     getUserById,
     allUsers
 };
