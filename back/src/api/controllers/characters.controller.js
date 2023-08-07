@@ -177,7 +177,7 @@ const getCharacterById = async (req, res, next) => {
 
 const getAllCharacters = async (req, res, next) => {
     try {
-        const allCharacters = await Character.find().populate('user characterComments movie characterGallery');
+        const allCharacters = await Character.find().populate('user characterComments movie');
         if (allCharacters) {
             return res.status(200).json(allCharacters);
         } else {

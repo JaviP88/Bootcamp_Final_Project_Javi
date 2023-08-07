@@ -539,7 +539,7 @@ const addFavouriteMovie = async (req, res, next) => {
 const getUserById = async (req, res, next) => {
     try {
         const { _id } = req.params;
-        const userById = await User.findById(_id).populate("favouriteCharacters");
+        const userById = await User.findById(_id).populate("favouriteCharacters favouriteMovies userComments");
 
         if(userById) {
             return res.status(200).json(userById);
