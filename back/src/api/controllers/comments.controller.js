@@ -60,14 +60,8 @@ const createNewComment = async (req, res, next) => {
     };
 };
 
-//!
-//!
-//!
-//!
-//!    OJO!!! para que puedan manipular comentarios, sólo el usuario que lo crea lo puede borrar
-//!
-//!
-//!
+
+
 //! -------------------------------------------------------------------------------
 //? -------------------------- UPDATE COMMENT -------------------------------------
 //! -------------------------------------------------------------------------------
@@ -80,7 +74,7 @@ const updateComment = async (req, res, next) => {
         const { _id } = req.user;
         const { id } = req.params;
 
-        // Comprobamos que el user y el comentario existen y es el que ha puesto el comentario
+        // Comprobamos que el user y el comentario existen y es el que ha puesto el comentario, si no lo ha puesto, no puede modificarlo.
         const user = await User.findById(_id);
         const commentExist = await Comment.findById(id);
 

@@ -73,6 +73,8 @@ const updateMovie = async (req, res, next) => {
             // No quiero que se pueda actualizar el ID
             updateMovieWithNewInfo._id = movieExist._id;
             updateMovieWithNewInfo.user = movieExist.user;
+            updateMovieWithNewInfo.movieComments = movieExist.movieComments;
+            updateMovieWithNewInfo.movieCharacters = movieExist.movieCharacters;
 
             // Actualizamos la DB con el ID y la instancia del modelo de movie
             try {

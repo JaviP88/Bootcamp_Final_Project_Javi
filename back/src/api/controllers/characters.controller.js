@@ -69,9 +69,12 @@ const updateCharacter = async (req, res, next) => {
             if (req.file) {
                 updateCharacterWithNewInfo.image = req.file.path;
             };
-            // No quiero que se pueda actualizar el ID
+            // No quiero que se pueda actualizar estas cosas
             updateCharacterWithNewInfo._id = characterExist._id;
             updateCharacterWithNewInfo.user = characterExist.user;
+            updateCharacterWithNewInfo.characterComments = characterExist.characterComments;
+            updateCharacterWithNewInfo.movie = characterExist.movie;
+            updateCharacterWithNewInfo.characterGallery = characterExist.characterGallery;
 
             // Actualizamos la DB con el ID y la instancia del modelo de character
             try {
