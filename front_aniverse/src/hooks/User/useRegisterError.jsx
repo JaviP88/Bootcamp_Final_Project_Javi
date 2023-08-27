@@ -17,7 +17,7 @@ export const useRegisterError = (res, setRegisterOk, setRes, /* setAllUser */) =
 
     Swal.fire({
       icon: "success",
-      title: `${userName} Welcome to my Page 💌`,
+      title: `${userName} Welcome to Aniverse`,
       showConfirmButton: false,
       timer: 1500,
     });

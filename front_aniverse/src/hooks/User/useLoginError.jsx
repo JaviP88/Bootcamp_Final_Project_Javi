@@ -21,16 +21,13 @@ export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
       checkConfrmationCode: res.data.user.checkConfrmationCode,
     };
 
-    console.log('La res.data es: ', res.data)
-    console.log('La data cusrom es: ', dataCustom)
-
     const userName = res.data.user.name;
     const dataString = JSON.stringify(dataCustom);
     userLogin(dataString);
     setLoginOk(() => true);
     Swal.fire({
       icon: "success",
-      title: `${userName} Welcome to my Page 💌`,
+      title: `${userName} we are glad tu see you again 😁`,
       text: "Login ok ✅",
       showConfirmButton: false,
       timer: 1500,

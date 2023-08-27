@@ -19,7 +19,7 @@ body {
 }
 
 main {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   min-height: 70vh;
   display: flex;
   flex-direction: column;

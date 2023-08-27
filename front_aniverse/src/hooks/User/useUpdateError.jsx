@@ -2,7 +2,7 @@ import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
 
 
-export const useUpdateError = (res, setRes, setUser, logout) => {
+export const useUpdateError = (res, setRes, setUser, logout, setOkUpdate) => {
   //! ---------------200: testUpdate: tenemos que ver que todo este a true
   let contador;
   if (res?.data) {
@@ -25,6 +25,7 @@ export const useUpdateError = (res, setRes, setUser, logout) => {
         }
       }
     });
+    //setOkUpdate(true)   ----->   Si hago un autologin podré realizar cambios del usuario y verlo en el momento
     logout();
     Swal.fire({
       icon: "success",
