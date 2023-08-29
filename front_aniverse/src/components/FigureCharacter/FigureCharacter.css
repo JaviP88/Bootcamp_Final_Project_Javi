@@ -1,0 +1,15 @@
+.imageCharacter {
+    background-color: white;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .nameCharacter {
+    text-align: center;
+  }
+  
+  .dataCharacter {
+    padding: 2rem;
+  }

@@ -51,7 +51,7 @@ export const Navbar = () => {
                     <a href="/home">Inicio</a>
                   </li>
                   <li>
-                    <a href="/galery">Galeria</a>
+                    <a href="/charactersDashboard">Characters</a>
                   </li>
                   <li>
                     <a href="/profile">Perfil</a>

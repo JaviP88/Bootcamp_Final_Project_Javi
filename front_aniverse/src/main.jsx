@@ -12,7 +12,11 @@ import { ForgotPassword } from './pages/ForgotPassword/FotgotPassword.jsx'
 import { ChangePassword } from './pages/ChangePassword/ChangePassword.jsx'
 import { UpdateUser } from './pages/UpdateUser/UpdateUser.jsx'
 import { Profile } from './pages/Profile/Profile.jsx'
+
+import { CharactersDashboard } from './pages/CharactersDashboard/CharactersDashboard.jsx'
 import { Characters } from './pages/Characters/Characters.jsx'
+import { CreateCharacter } from './pages/CreateCharacter/CreateCharacter.jsx'
+import { UpdateCharacter } from './pages/UpdateCharacter/UpdateCharacter.jsx'
 import Movies from './pages/Movies/Movies.jsx'
 import NotFound from './pages/NotFound/NotFound.jsx'
 import { AuthContextProvider } from './context/authContext.jsx'
@@ -34,7 +38,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/changepassword' element={<ChangePassword />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/update/update' element={<UpdateUser />} />
-            <Route path='/characters' element={<Characters />} />
+            <Route path='/newCharacter' element={<CreateCharacter />} />
+            <Route path='/updateCharacter/:id' element={<UpdateCharacter />} />
+            
+            <Route path='/charactersDashboard' element={<CharactersDashboard />} />
             <Route path='/movie' element={<Movies />} />
             <Route path='/*' element={<NotFound />} />
           </Route> 
