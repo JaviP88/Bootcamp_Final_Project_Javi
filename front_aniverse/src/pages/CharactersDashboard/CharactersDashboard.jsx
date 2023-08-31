@@ -12,12 +12,12 @@ export const CharactersDashboard = () => {
   const [res, setRes] = useState([]);
   const [resError, setError] = useState(false);
 
-  const crearListaCebo = async () => {
+  const createCharacterList = async () => {
     setRes(await getAllCharacters());
   };
 
   useEffect(() => {
-    crearListaCebo();
+    createCharacterList();
   }, []);
 
   useEffect(() => {
@@ -36,12 +36,12 @@ export const CharactersDashboard = () => {
       </NavLink>
 
       {res?.data?.length > 0 ? ( // Verifica si la lista tiene elementos
-        <ul>
+        <ul className='characterList'>
           {res?.data?.map((item) => (
             <li key={item._id}>
-              <NavLink to={`/characters/${item._id}`}>
-                <CharacterCard data={item} />
-              </NavLink>
+              
+                <CharacterCard data={item} createCharacterList={createCharacterList} />
+              
             </li>
           ))}
         </ul>

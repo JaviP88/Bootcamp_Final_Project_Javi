@@ -56,12 +56,12 @@ export const Navbar = () => {
                   <li>
                     <a href="/profile">Perfil</a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="/contact">Contacto</a>
                   </li>
                   <li>
                     <a href="/aboutus">Preguntas frecuentes</a>
-                  </li>
+                  </li> */}
                   <li>
                     <a href="/" onClick={logout}>
                       Cerrar sesion

@@ -62,7 +62,7 @@ export const CreateCharacter = () => {
   if (okRegister) {
     console.log("res", res);
     console.log("Character create");
-    return <Navigate to="/characters" />;
+    return <Navigate to="/charactersDashboard" />;
   }
 
   return (

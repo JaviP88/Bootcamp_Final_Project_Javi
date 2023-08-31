@@ -33,7 +33,7 @@ export const Profile = () => {
         <img
           src="https://res.cloudinary.com/dq186ej4c/image/upload/v1686140226/eliminar_user_rmwoeg.png"
           alt="user delete button"
-          className="iconNav iconDeleteUser"
+          className={"iconNav iconDeleteUser"}
           onClick={() => useDeleteUserError(setUser)}
         />
       </div>

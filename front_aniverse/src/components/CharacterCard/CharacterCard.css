@@ -1,0 +1,28 @@
+.characterCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 18rem;
+    height: 25rem;
+    background-color: rgba(78, 78, 78, 0.478);
+    border-radius: 1rem;
+}
+
+.upperBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.5rem;
+    gap: 2rem;
+}
+
+.characterImage {
+    width: 15rem;
+    border-radius: 0.5rem;
+    background-color: whitesmoke;
+    object-fit: cover;
+    
+}

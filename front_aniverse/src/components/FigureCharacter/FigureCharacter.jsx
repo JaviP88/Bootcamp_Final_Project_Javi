@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import "./FigureCharacter.css";
 import { useEffect, useState } from "react";
 import { getCharacterById } from "../../services/API_character/character.service";

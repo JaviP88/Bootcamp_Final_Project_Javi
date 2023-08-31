@@ -63,12 +63,13 @@ export const UpdateCharacter = () => {
     return (
       <>
         <div className="containerProfile">
-          <div className="containerDataNoChange">
-            <FigureCharacter id={id} />
-          </div>
+          
           <div className="form-wrap formProfile">
             <h1>Change data character ♻</h1>
-            <p>Please, enter the data</p>
+            <div className="containerDataNoChange">
+              <FigureCharacter id={id} />
+            </div>
+            <p>Please, enter the changes</p>
             <form onSubmit={handleSubmit(formSubmit)}>
               <div className="user_container form-group">
                 <input

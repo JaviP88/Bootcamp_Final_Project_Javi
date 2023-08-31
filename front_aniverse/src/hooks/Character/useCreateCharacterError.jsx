@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useCreateCharacterError = (res, /* setOkRegister, */ setRes, /* setAllUser */) => {
+export const useCreateCharacterError = (res, setOkRegister, setRes, /* setAllUser */) => {
   //? si la respuesta es ok ---- > directamente esta el status en la primera clave es decir: res.status
   //? si la respuesta no esta ok--> res.response.status
  

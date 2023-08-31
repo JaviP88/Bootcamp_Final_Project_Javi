@@ -1,7 +1,19 @@
+
+.dataCharacter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  
+  padding: 2rem;
+}
+
 .imageCharacter {
     background-color: white;
-    width: 280px;
-    height: 280px;
+
+    width: 5rem;
+    height: 5rem;
     object-fit: cover;
     border-radius: 50%;
   }
@@ -10,6 +22,4 @@
     text-align: center;
   }
   
-  .dataCharacter {
-    padding: 2rem;
-  }
+ 

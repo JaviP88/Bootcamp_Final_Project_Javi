@@ -37,7 +37,7 @@ export const updateCharacter = async (_id , formData) => {
 //! ------------------------------- DELETE CHARACTER -----------------------------------
 
 export const deleteCharacter = async (id) => {
-    return APIcharacter.delete(`/characters/${id}`, {
+    return APIcharacter.delete(`/characters/deleteCharacter/${id}`, {
       headers: {
         Authorization: `Bearer ${updateToken()}`,
       },
@@ -64,8 +64,8 @@ export const getAllCharacters = async () => {
 
 //! ------------------------------- ADD MOVIE TO A CHARACTER -----------------------------------
 
-export const addMovieToACharacter = async () => {
-    return APIcharacter.post(`/characters/addMovieToCharacter`)
+export const addMovieToACharacter = async (formData) => {
+    return APIcharacter.post(`/characters/addMovieToCharacter`, formData)
       .then((res) => res)
       .catch((error) => error);
   };
